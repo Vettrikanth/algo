@@ -1,0 +1,21 @@
+#3. Designing Knapsack problem
+#0/1 knapsack:
+
+val = [60, 100, 120]
+wt  = [10, 20, 30]
+cap = 50
+n   = len(val)
+
+def knapsack(val, wt, cap , n):
+    if cap == 0 or n == 0:
+        return 0
+    
+    if wt[n-1] > cap:
+        return knapsack(val, wt, cap, n-1)
+    
+    else:
+        return max(val[n-1] + knapsack(val, wt, cap - wt[n-1], n-1)  ,  knapsack(val, wt, cap, n-1))
+    
+print("The maximum obtainable value from bag of weight", cap, "is...")
+ 
+print(knapsack(val, wt, cap, n)) 
